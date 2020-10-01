@@ -1,0 +1,7 @@
+.month-arc:hover {
+	transform: scale(1.1);
+}
+.month-arc {
+	transition: all 0.3s;
+	transform-origin: 50% 50%;
+}
