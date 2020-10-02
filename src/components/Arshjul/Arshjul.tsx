@@ -10,6 +10,7 @@ interface IArshjulState {
 	svgWidth: number;
 	months: any[];
 	showShortHand: boolean;
+	Categories: any[]
 }
 export default class Arshjul extends Component<IArshjulProps, IArshjulState> {
 	constructor(props: any) {
@@ -25,7 +26,8 @@ export default class Arshjul extends Component<IArshjulProps, IArshjulState> {
 			svgHeight: 0,
 			svgWidth: 0,
 			months: [],
-			showShortHand: false
+			showShortHand: true,
+			Categories: ['Sosialt', 'Møte', 'Lortpeis', 'Annet', 'Usosialt']
 		};
 	}
 	// Helperfunctions
@@ -39,6 +41,13 @@ export default class Arshjul extends Component<IArshjulProps, IArshjulState> {
 			this.setState({ months: createMonths(this.state.svgWidth, this.state.svgHeight) });
 		});
 	};
+	decideCateGoryLength(category: string){
+		const {months, Categories} = this.state;
+
+		months.forEach((month) =>{
+			
+		})
+	}
 
 	//Lifecyclemethods
 	componentDidMount() {
@@ -81,6 +90,7 @@ export default class Arshjul extends Component<IArshjulProps, IArshjulState> {
 												svgWidth={svgWidth}
 												event={event}
 												key={i}
+												eventsLength={month.events.length}
 												order={i}
 											/>
 										);

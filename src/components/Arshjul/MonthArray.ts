@@ -12,7 +12,8 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 60,
 			radius: monthRadius,
 			color: colorOdd,
-			events: []
+			events: [, { title: 'Harry Potter', Category: 'Sosialt' }, {title: 'GrevlingTemming', Category: 'Sosialt'},{title: "Årsmøte", Category: 'Møte'},
+						 {title: 'Ronnjvask', Category: "Usosialt"}, {title:"Julebord", Category: "Annet"}]
 		},
 		{
 			name: ['February', 'Feb'],
@@ -22,7 +23,7 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 30,
 			radius: monthRadius,
 			color: colorEven,
-			events: []
+			events: [{ title: 'Bursdag', Category: 'Annet' }, { title: 'CL-finale', Category: "Usosialt" },]
 		},
 		{
 			name: ['March', 'Mar'],
@@ -32,7 +33,9 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 0,
 			radius: monthRadius,
 			color: colorOdd,
-			events: []
+			events: [{ title: 'Bursdag', Category: "Annet" }, { title: 'CL-finale', Category: "Usosialt" }, { title: 'Debatt', Category: "Sosialt" },
+			 { title: 'Harry Potter', Category: "Sosialt" }, {title: 'GrevlingTemming', Category: "Sosialt"},
+			]
 		},
 		{
 			name: ['April', 'Apr'],
@@ -42,7 +45,7 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 330,
 			radius: monthRadius,
 			color: colorEven,
-			events: [{ title: 'Aprilsnar' }]
+			events: []
 		},
 		{
 			name: ['May', 'May'],
@@ -52,7 +55,7 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 300,
 			radius: monthRadius,
 			color: colorOdd,
-			events: []
+			events: [ {title: 'Ronnjvask', Category: "Usosialt"}, {title:"Julebord", Category: "Annet"}]
 		},
 		{
 			name: ['June', 'Jun'],
@@ -62,7 +65,7 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 270,
 			radius: monthRadius,
 			color: colorEven,
-			events: []
+			events: [ { title: 'Harry Potter' },{title: "Årsmøte"}, {title: 'Ronnjvask'}, {title:"Julebord"}]
 		},
 		{
 			name: ['July', 'Jul'],
@@ -72,7 +75,7 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 240,
 			radius: monthRadius,
 			color: colorOdd,
-			events: []
+			events: [{ title: 'Bursdag' }]
 		},
 		{
 			name: ['August', 'Aug'],
@@ -82,7 +85,7 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 210,
 			radius: monthRadius,
 			color: colorEven,
-			events: []
+			events: [{ title: 'Bursdag' }, { title: 'CL-finale' }, { title: 'Debatt' }]
 		},
 		{
 			name: ['September', 'Sept'],
@@ -92,7 +95,7 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 180,
 			radius: monthRadius,
 			color: colorOdd,
-			events: []
+			events: [{ title: 'Bursdag' }]
 		},
 		{
 			name: ['October', 'Oct'],
@@ -102,7 +105,7 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 150,
 			radius: monthRadius,
 			color: colorEven,
-			events: []
+			events: [{ title: 'Bursdag' }, {title:"Julebord"}]
 		},
 		{
 			name: ['November', 'Nov'],
@@ -112,7 +115,8 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 120,
 			radius: monthRadius,
 			color: colorOdd,
-			events: [{ title: 'Bursdag' }, { title: 'CL-finale' }, { title: 'Debatt' }, { title: 'Harry Potter' }]
+			events: [
+				{ title: 'Bursdag' }, { title: 'CL-finale' }, {title:"Julebord"}]
 		},
 		{
 			name: ['December', 'Dec'],
@@ -122,7 +126,7 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 90,
 			radius: monthRadius,
 			color: colorEven,
-			events: []
+			events: [{ title: 'Bursdag' }]
 		}
 	];
 }

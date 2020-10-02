@@ -20,7 +20,7 @@ export default class MonthArc extends Component<IMonthArcProps, IMonthArcState> 
 					d={describeArc(
 						svgWidth / 2,
 						svgHeight / 2,
-						svgWidth / 12 + svgHeight / 12,
+						svgWidth / 16 + svgHeight / 16,
 						month.startAngle,
 						month.endAngle
 					)}
@@ -35,7 +35,7 @@ export default class MonthArc extends Component<IMonthArcProps, IMonthArcState> 
 						d={describeArc(
 							svgWidth / 2,
 							svgHeight / 2,
-							svgWidth / 14 + svgHeight / 14,
+							svgWidth / 18 + svgHeight / 18,
 							month.startAngle,
 							month.endAngle
 						)}

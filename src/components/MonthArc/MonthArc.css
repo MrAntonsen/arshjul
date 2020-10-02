@@ -1,5 +1,6 @@
 .month-arc:hover {
 	transform: scale(1.1);
+	font-weight: 800;
 }
 .month-arc {
 	transition: all 0.3s;

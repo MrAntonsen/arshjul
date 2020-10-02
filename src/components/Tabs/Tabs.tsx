@@ -1,47 +1,67 @@
 import React, { Component } from 'react';
 import { describeArc } from '../../shared/methods/SharedMethods';
+import './Tabs.css'
 interface ITabProps {
 	month: any;
 	svgWidth: number;
 	svgHeight: number;
 	event: any;
+	eventsLength: number;
 	order: number;
 }
-interface ITabsState {}
+interface ITabsState {
+	color: string;
+}
 export default class Tabs extends Component<ITabProps, ITabsState> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
-			number: 0
+			color: "white"
 		};
 	}
+	componentDidMount(){
+		let color = this.getRandomColor();
+		this.setState({color})
+	}
 	//---------------Helper-Methods--------------------//
+	 getRandomColor(): string {
+		var letters = '0123456789ABCDEF';
+		var color = '#';
+		for (var i = 0; i < 6; i++) {
+		  color += letters[Math.floor(Math.random() * 16)];
+		}
+		return color;
+	  }
 	decideColor = (decider: string): string => {
 		if (decider === 'fill') {
-			return this.props.order % 2 === 0 ? '#577399' : '#495867';
-		} else if (decider === 'stroke') {
-			return this.props.order % 2 === 0 ? 'white' : 'black';
+			  return this.getRandomColor();
+			// return this.props.month.color === '#577399' ? this.props.order % 2 === 0 ? '#577399' : '#495867' : 
+			// this.props.month.color === '#495867' ? this.props.order % 2 === 0 ? '#495867' : '#577399' : '#495867';
 		}
+		//  else if (decider === 'stroke') {
+		// 	return this.props.month.color === '#f1faee' ? this.props.order % 2 === 0 ? '#f1faee' : '#a8dadc' : 
+		// 	this.props.month.color === '#a8dadc' ? this.props.order % 2 === 0 ? '#a8dadc' : '#f1faee' : '#a8dadc';
+		// }
 		return '';
 	};
 	decidePosition = () => {};
 	render() {
-		let { month, svgHeight, svgWidth, event, order } = this.props;
-		console.log(order, event.title);
+		let { month, svgHeight, svgWidth, event, order, eventsLength } = this.props;
+		let koeff = order + 1;
 		return (
-			<g style={{ zIndex: 10 - order }}>
+			<g className="event-arc">
 				<path
 					id={`${month.name[0]}-arc-event`}
 					d={describeArc(
 						svgWidth / 2,
 						svgHeight / 2,
-						svgWidth / 10 + svgHeight / 10,
+						(svgWidth / 14 + svgHeight/14) +  ((eventsLength - koeff) * 50),
 						month.startAngle,
 						month.endAngle
 					)}
-					fill={this.decideColor('fill')}
-					stroke={this.decideColor('stroke')}
-					strokeWidth="2"
+					fill={this.state.color}
+					stroke='#f1faee'
+					strokeWidth="3"
 					// style={{ zIndex: 10 - order }}
 					// onClick={() => this.onClickedMonth(month.name)}
 				/>
@@ -51,7 +71,7 @@ export default class Tabs extends Component<ITabProps, ITabsState> {
 						d={describeArc(
 							svgWidth / 2,
 							svgHeight / 2,
-							svgWidth / 10.5 + svgHeight / 10.5,
+							(svgWidth / 14.5 + svgHeight/14.5) +  ((eventsLength - koeff) * 50),
 							month.startAngle,
 							month.endAngle
 						)}
