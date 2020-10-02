@@ -72,13 +72,6 @@ export default class Arshjul extends Component<IArshjulProps, IArshjulState> {
 					{months.map((month: any) => {
 						return (
 							<g key={month.name[0]}>
-								{/* <MonthArc
-									month={month}
-									svgHeight={svgHeight}
-									svgWidth={svgWidth}
-									showShortHand={showShortHand}
-									onClickedMonth={this.onClickedMonth}
-								/> */}
 								{month.events.length > 0 &&
 									month.events.map((event: any, i: number) => {
 										return (
@@ -88,6 +81,7 @@ export default class Arshjul extends Component<IArshjulProps, IArshjulState> {
 												svgWidth={svgWidth}
 												event={event}
 												key={i}
+												order={i}
 											/>
 										);
 									})}
@@ -105,10 +99,10 @@ export default class Arshjul extends Component<IArshjulProps, IArshjulState> {
 						id="center-circle"
 						fill="white"
 						stroke="black"
-						cy={this.state.svgHeight / 2}
-						cx={this.state.svgWidth / 2}
+						cy={svgHeight / 2}
+						cx={svgWidth / 2}
 						strokeWidth="3"
-						r={this.state.svgWidth / 48 + this.state.svgHeight / 48}
+						r={svgWidth / 48 + svgHeight / 48}
 					/>
 				</svg>
 			</div>

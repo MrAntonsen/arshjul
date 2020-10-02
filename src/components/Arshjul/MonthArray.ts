@@ -42,7 +42,7 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 330,
 			radius: monthRadius,
 			color: colorEven,
-			events: []
+			events: [{ title: 'Aprilsnar' }]
 		},
 		{
 			name: ['May', 'May'],
@@ -112,7 +112,7 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 120,
 			radius: monthRadius,
 			color: colorOdd,
-			events: [{ title: 'Bursdag' }]
+			events: [{ title: 'Bursdag' }, { title: 'CL-finale' }, { title: 'Debatt' }, { title: 'Harry Potter' }]
 		},
 		{
 			name: ['December', 'Dec'],

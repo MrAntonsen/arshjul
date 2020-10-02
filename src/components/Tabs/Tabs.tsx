@@ -5,13 +5,31 @@ interface ITabProps {
 	svgWidth: number;
 	svgHeight: number;
 	event: any;
+	order: number;
 }
 interface ITabsState {}
 export default class Tabs extends Component<ITabProps, ITabsState> {
+	constructor(props: any) {
+		super(props);
+		this.state = {
+			number: 0
+		};
+	}
+	//---------------Helper-Methods--------------------//
+	decideColor = (decider: string): string => {
+		if (decider === 'fill') {
+			return this.props.order % 2 === 0 ? '#577399' : '#495867';
+		} else if (decider === 'stroke') {
+			return this.props.order % 2 === 0 ? 'white' : 'black';
+		}
+		return '';
+	};
+	decidePosition = () => {};
 	render() {
-		let { month, svgHeight, svgWidth, event } = this.props;
+		let { month, svgHeight, svgWidth, event, order } = this.props;
+		console.log(order, event.title);
 		return (
-			<g>
+			<g style={{ zIndex: 10 - order }}>
 				<path
 					id={`${month.name[0]}-arc-event`}
 					d={describeArc(
@@ -21,29 +39,28 @@ export default class Tabs extends Component<ITabProps, ITabsState> {
 						month.startAngle,
 						month.endAngle
 					)}
-					fill={month.color}
-					stroke="black"
+					fill={this.decideColor('fill')}
+					stroke={this.decideColor('stroke')}
 					strokeWidth="2"
+					// style={{ zIndex: 10 - order }}
 					// onClick={() => this.onClickedMonth(month.name)}
 				/>
 				<defs>
 					<path
-						id={`p1-${month.name[0]}`}
+						id={`p1-${month.name[0]}-${order}`}
 						d={describeArc(
 							svgWidth / 2,
 							svgHeight / 2,
-							svgWidth / 14 + svgHeight / 14,
+							svgWidth / 10.5 + svgHeight / 10.5,
 							month.startAngle,
 							month.endAngle
 						)}
-						fill="#ddd"
-						stroke="#ddd"
 					></path>
 				</defs>
 				<text>
 					<textPath
-						xlinkHref={`#p1-${month.name[0]}`}
-						startOffset="15%"
+						xlinkHref={`#p1-${month.name[0]}-${order}`}
+						startOffset="10%"
 						textAnchor="middle"
 						className="wheel-label"
 						stroke="white"

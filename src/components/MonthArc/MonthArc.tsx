@@ -39,8 +39,6 @@ export default class MonthArc extends Component<IMonthArcProps, IMonthArcState> 
 							month.startAngle,
 							month.endAngle
 						)}
-						fill="#ddd"
-						stroke="#ddd"
 					></path>
 				</defs>
 				<text>
