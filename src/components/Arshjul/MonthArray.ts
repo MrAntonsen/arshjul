@@ -12,8 +12,11 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 60,
 			radius: monthRadius,
 			color: colorOdd,
-			events: [, { title: 'Harry Potter', Category: 'Sosialt' }, {title: 'GrevlingTemming', Category: 'Sosialt'},{title: "Årsmøte", Category: 'Møte'},
-						 {title: 'Ronnjvask', Category: "Usosialt"}, {title:"Julebord", Category: "Annet"}]
+			events: [
+				{ title: 'Styremøte 201-1', Category: 'Møte' },
+				{ title: 'Julebord', Category: 'Sosialt' },
+				{ title: 'Nyttårsdag', Category: 'Fridag' }
+			]
 		},
 		{
 			name: ['February', 'Feb'],
@@ -23,7 +26,7 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 30,
 			radius: monthRadius,
 			color: colorEven,
-			events: [{ title: 'Bursdag', Category: 'Annet' }, { title: 'CL-finale', Category: "Usosialt" },]
+			events: []
 		},
 		{
 			name: ['March', 'Mar'],
@@ -33,9 +36,7 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 0,
 			radius: monthRadius,
 			color: colorOdd,
-			events: [{ title: 'Bursdag', Category: "Annet" }, { title: 'CL-finale', Category: "Usosialt" }, { title: 'Debatt', Category: "Sosialt" },
-			 { title: 'Harry Potter', Category: "Sosialt" }, {title: 'GrevlingTemming', Category: "Sosialt"},
-			]
+			events: [{ title: 'Styremøte 202-2', Category: 'Møte' }]
 		},
 		{
 			name: ['April', 'Apr'],
@@ -45,7 +46,7 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 330,
 			radius: monthRadius,
 			color: colorEven,
-			events: []
+			events: [{ title: 'Generalforsamling', Category: 'Møte' }]
 		},
 		{
 			name: ['May', 'May'],
@@ -55,7 +56,12 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 300,
 			radius: monthRadius,
 			color: colorOdd,
-			events: [ {title: 'Ronnjvask', Category: "Usosialt"}, {title:"Julebord", Category: "Annet"}]
+			events: [
+				{ title: 'Styremøte 203-3', Category: 'Møte' },
+				{ title: 'Lanserinig av Enable Personelloversikt', Category: 'Salg' },
+				{ title: '1. Mai', Category: 'Fridag' },
+				{ title: 'Kristi Himmelfart', Category: 'Fridag' }
+			]
 		},
 		{
 			name: ['June', 'Jun'],
@@ -65,7 +71,10 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 270,
 			radius: monthRadius,
 			color: colorEven,
-			events: [ { title: 'Harry Potter' },{title: "Årsmøte"}, {title: 'Ronnjvask'}, {title:"Julebord"}]
+			events: [
+				{ title: 'Annonsekampanje Enable Personelloversikt', Category: 'Salg' },
+				{ title: 'Pinseferie', Category: 'Ferie' }
+			]
 		},
 		{
 			name: ['July', 'Jul'],
@@ -75,7 +84,7 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 240,
 			radius: monthRadius,
 			color: colorOdd,
-			events: [{ title: 'Bursdag' }]
+			events: []
 		},
 		{
 			name: ['August', 'Aug'],
@@ -85,7 +94,10 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 210,
 			radius: monthRadius,
 			color: colorEven,
-			events: [{ title: 'Bursdag' }, { title: 'CL-finale' }, { title: 'Debatt' }]
+			events: [
+				{ title: 'Styremøte 2020-4', Category: 'Møte' },
+				{ title: 'Lansering av Zokrates v2', Category: 'Salg' }
+			]
 		},
 		{
 			name: ['September', 'Sept'],
@@ -95,7 +107,10 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 180,
 			radius: monthRadius,
 			color: colorOdd,
-			events: [{ title: 'Bursdag' }]
+			events: [
+				{ title: 'Strategisamling', Category: 'Møte' },
+				{ title: 'Annonsekampanje Enable Årshjul', Category: 'Salg' }
+			]
 		},
 		{
 			name: ['October', 'Oct'],
@@ -105,7 +120,10 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 150,
 			radius: monthRadius,
 			color: colorEven,
-			events: [{ title: 'Bursdag' }, {title:"Julebord"}]
+			events: [
+				{ title: 'Styremøte 2020-5', Category: 'Møte' },
+				{ title: 'Annonsekampanje Enable Årshjul', Category: 'Salg' }
+			]
 		},
 		{
 			name: ['November', 'Nov'],
@@ -115,8 +133,7 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 120,
 			radius: monthRadius,
 			color: colorOdd,
-			events: [
-				{ title: 'Bursdag' }, { title: 'CL-finale' }, {title:"Julebord"}]
+			events: [{ title: 'Julebord', Category: 'Sosialt' }]
 		},
 		{
 			name: ['December', 'Dec'],
@@ -126,7 +143,10 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			endAngle: 90,
 			radius: monthRadius,
 			color: colorEven,
-			events: [{ title: 'Bursdag' }]
+			events: [
+				{ title: 'Styremøte 2020-6', Category: 'Salg' },
+				{ title: 'Juleferie', Category: 'Ferie' }
+			]
 		}
 	];
 }

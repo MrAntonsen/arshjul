@@ -20,7 +20,7 @@ export default class MonthArc extends Component<IMonthArcProps, IMonthArcState> 
 					d={describeArc(
 						svgWidth / 2,
 						svgHeight / 2,
-						svgWidth / 16 + svgHeight / 16,
+						svgWidth / 18 + svgHeight / 18,
 						month.startAngle,
 						month.endAngle
 					)}
@@ -35,7 +35,7 @@ export default class MonthArc extends Component<IMonthArcProps, IMonthArcState> 
 						d={describeArc(
 							svgWidth / 2,
 							svgHeight / 2,
-							svgWidth / 18 + svgHeight / 18,
+							svgWidth / 20 + svgHeight / 20,
 							month.startAngle,
 							month.endAngle
 						)}
@@ -48,6 +48,7 @@ export default class MonthArc extends Component<IMonthArcProps, IMonthArcState> 
 						textAnchor="middle"
 						className="wheel-label"
 						stroke="white"
+						fontSize="10px"
 					>
 						{showShortHand ? month.name[1] : month.name[0]}
 					</textPath>
