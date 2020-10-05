@@ -4,7 +4,7 @@ export interface CartesianCoordinate {
 }
 export interface IEvent {
 	eventName: string;
-	month: string;
+	month: any[];
 }
 export interface ICategory {
 	category: string;

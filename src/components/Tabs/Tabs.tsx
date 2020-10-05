@@ -1,27 +1,65 @@
 import React, { Component } from 'react';
+import { ICategory } from '../../shared/interfaces/interfaces';
 import { describeArc } from '../../shared/methods/SharedMethods';
 import './Tabs.css';
 interface ITabProps {
-	month: any;
+	months: any;
 	svgWidth: number;
 	svgHeight: number;
 	event: any;
 	eventsLength: number;
-	order: number;
+	eventOrder: number;
+	catOrder: number;
+	category: ICategory;
+	totRadius: number;
 }
 interface ITabsState {
 	color: string;
+	month: string;
+	startAngle: number;
+	endAngle: number;
 }
 export default class Tabs extends Component<ITabProps, ITabsState> {
 	constructor(props: any) {
 		super(props);
 		this.state = {
-			color: 'white'
+			color: 'black',
+			month: '',
+			startAngle: 0,
+			endAngle: 0
 		};
 	}
 	componentDidMount() {
 		let color = this.getRandomColor();
-		this.setState({ color });
+		let month = this.props.event.month;
+		// let startAngle = this.months.
+		if (month) {
+			let mnd = this.props.months.find((mnth: any) => mnth.name[0] === month);
+			let startAngle = mnd.startAngle;
+			let endAngle = mnd.endAngle;
+			// console.log(startAngle, endAngle);
+			if (mnd) {
+				this.setState({ color: color }, () => {
+					this.setState(
+						{
+							month: this.props.event.month
+						},
+						() => {
+							this.setState(
+								{
+									startAngle: startAngle,
+									endAngle: endAngle
+								},
+								() => {
+									// console.log(this.state);
+								}
+							);
+						}
+					);
+				});
+			}
+			console.log(mnd);
+		}
 	}
 	//---------------Helper-Methods--------------------//
 	getRandomColor(): string {
@@ -35,59 +73,56 @@ export default class Tabs extends Component<ITabProps, ITabsState> {
 	decideColor = (decider: string): string => {
 		if (decider === 'fill') {
 			return this.getRandomColor();
-			// return this.props.month.color === '#577399' ? this.props.order % 2 === 0 ? '#577399' : '#495867' :
-			// this.props.month.color === '#495867' ? this.props.order % 2 === 0 ? '#495867' : '#577399' : '#495867';
 		}
-		//  else if (decider === 'stroke') {
-		// 	return this.props.month.color === '#f1faee' ? this.props.order % 2 === 0 ? '#f1faee' : '#a8dadc' :
-		// 	this.props.month.color === '#a8dadc' ? this.props.order % 2 === 0 ? '#a8dadc' : '#f1faee' : '#a8dadc';
-		// }
 		return '';
 	};
 	decidePosition = () => {};
 	render() {
-		let { month, svgHeight, svgWidth, event, order, eventsLength } = this.props;
-		let koeff = order + 1;
+		const { svgHeight, svgWidth, event, eventOrder, eventsLength, category, catOrder } = this.props;
+		const { startAngle, endAngle } = this.state;
+
 		// console.log(svgWidth / 15.5 + svgHeight / 15.5 + (eventsLength - koeff) * 30);
+
+		// svgWidth / 7 + svgHeight / 7 + (eventsLength - catOrder * 30 - 5);
+		// console.log(eventsLength, catOrder, event.eventName, eventOrder);
 		return (
 			<g className="event-arc">
 				<path
-					id={`${month.name[0]}-arc-event`}
+					id={`${event.eventName}-arc-event`}
 					d={describeArc(
 						svgWidth / 2,
 						svgHeight / 2,
-						svgWidth / 15.5 + svgHeight / 15.5 + (eventsLength - koeff) * 30,
-						month.startAngle,
-						month.endAngle
+						svgWidth / 6.5 + svgHeight / 6.5 + (eventsLength - catOrder * 55),
+						startAngle,
+						endAngle
 					)}
 					fill={this.state.color}
 					stroke="#f1faee"
 					strokeWidth="3"
-					// style={{ zIndex: 10 - order }}
-					// onClick={() => this.onClickedMonth(month.name)}
 				/>
 				<defs>
+					{/* {console.log(category.maxCount)} */}
 					<path
-						id={`p1-${month.name[0]}-${order}`}
+						id={`p2-${category.category}-${eventOrder}`}
 						d={describeArc(
 							svgWidth / 2,
 							svgHeight / 2,
-							svgWidth / 16 + svgHeight / 16 + (eventsLength - koeff) * 30,
-							month.startAngle,
-							month.endAngle
+							svgWidth / 7 + svgHeight / 7 + (eventsLength - catOrder * 55),
+							startAngle,
+							endAngle
 						)}
 					></path>
 				</defs>
 				<text>
 					<textPath
-						xlinkHref={`#p1-${month.name[0]}-${order}`}
+						xlinkHref={`#p2-${category.category}-${eventOrder}`}
 						startOffset="10%"
 						textAnchor="middle"
 						className="wheel-label"
 						stroke="black"
 						fontSize="12px"
 					>
-						{event.title.length > 8 ? `${event.title.slice(0, 8)}...` : event.title}
+						{event.eventName.length > 8 ? `${event.eventName.slice(0, 8)}...` : event.eventName}
 					</textPath>
 				</text>
 			</g>

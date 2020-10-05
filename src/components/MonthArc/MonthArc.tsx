@@ -13,6 +13,7 @@ export default class MonthArc extends Component<IMonthArcProps, IMonthArcState> 
 	//Eventlisteners
 	render() {
 		const { month, svgHeight, svgWidth, showShortHand, onClickedMonth } = this.props;
+
 		return (
 			<g className="month-arc">
 				<path
@@ -20,7 +21,7 @@ export default class MonthArc extends Component<IMonthArcProps, IMonthArcState> 
 					d={describeArc(
 						svgWidth / 2,
 						svgHeight / 2,
-						svgWidth / 18 + svgHeight / 18,
+						svgWidth / 15 + svgHeight / 15,
 						month.startAngle,
 						month.endAngle
 					)}

@@ -14,7 +14,6 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			color: colorOdd,
 			events: [
 				{ title: 'Styremøte 201-1', Category: 'Møte' },
-				{ title: 'Julebord', Category: 'Sosialt' },
 				{ title: 'Nyttårsdag', Category: 'Fridag' }
 			]
 		},
@@ -122,7 +121,9 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			color: colorEven,
 			events: [
 				{ title: 'Styremøte 2020-5', Category: 'Møte' },
-				{ title: 'Annonsekampanje Enable Årshjul', Category: 'Salg' }
+				{ title: 'Annonsekampanje Enable Årshjul', Category: 'Salg' },
+				{ title: 'Annonsekampanje Enable Årshjul', Category: 'Salg' },
+				{ title: 'Annonsekampanje Enable Årshjul', Category: 'Annet' }
 			]
 		},
 		{
@@ -144,7 +145,7 @@ function createMonths(svgWidth: number, svgHeight: number) {
 			radius: monthRadius,
 			color: colorEven,
 			events: [
-				{ title: 'Styremøte 2020-6', Category: 'Salg' },
+				{ title: 'Styremøte 2020-6', Category: 'Møte' },
 				{ title: 'Juleferie', Category: 'Ferie' }
 			]
 		}
