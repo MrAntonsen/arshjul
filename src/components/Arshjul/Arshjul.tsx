@@ -5,7 +5,9 @@ import Tabs from '../Tabs/Tabs';
 import MonthArc from '../MonthArc/MonthArc';
 import CategoryCircle from '../CategoryCircle/CategoryCircle';
 import { months } from 'moment';
-import { ICategory } from '../../shared/interfaces/interfaces';
+import { ICategory, IEvent } from '../../shared/interfaces/interfaces';
+import { highestOccurance } from '../../shared/methods/SharedMethods';
+
 interface IArshjulProps {}
 interface IArshjulState {
 	mainCircle: any;
@@ -13,7 +15,7 @@ interface IArshjulState {
 	svgWidth: number;
 	months: any[];
 	showShortHand: boolean;
-	Categories: any[];
+	Categories: ICategory[];
 }
 export default class Arshjul extends Component<IArshjulProps, IArshjulState> {
 	constructor(props: any) {
@@ -31,12 +33,12 @@ export default class Arshjul extends Component<IArshjulProps, IArshjulState> {
 			months: [],
 			showShortHand: true,
 			Categories: [
-				{ index: 1, title: 'Møte', month: '', events: [] },
-				{ index: 2, title: 'Salg', month: '', events: [] },
-				{ index: 3, title: 'Fridag', month: '', events: [] },
-				{ index: 4, title: 'Sosialt', month: '', events: [] },
-				{ index: 5, title: 'Annet', month: '', events: [] }
-			]
+				{  category: 'Møte', maxCount: 0, events: [] },
+				{  category: 'Salg', maxCount: 0, events: [] },
+				{  category: 'Fridag', maxCount: 0, events: [] },
+				{  category: 'Sosialt', maxCount: 0, events: [] },
+				{  category: 'Annet', maxCount: 0, events: [] }
+			],
 		};
 	}
 	// Helperfunctions
@@ -53,55 +55,77 @@ export default class Arshjul extends Component<IArshjulProps, IArshjulState> {
 		});
 	};
 	decideCategories = () => {
-		let { Categories } = this.state;
-
+		let { Categories, months } = this.state;
+		// Categories= {
+		// 	category: "Salg",
+		// 	count: 2,
+		// 	events: [
+		// 		{
+		// 			eventName: "Lansering",
+		// 			month: "Januar"
+		// 		}, {
+		// 			eventName: "Lansering 2",
+		// 			month: "October"
+		// 		}
+		// 	]
+		// }
 		let maxLengthArray: any[] = [];
 		// let categoriesLength ;
-		let finalInfo: ICategory[] = [
-			{ count: 0, events: [] },
-			{ count: 0, events: [] },
-			{ count: 0, events: [] },
-			{ count: 0, events: [] },
-			{ count: 0, events: [] }
-		];
-		this.state.months.forEach((month, i) => {
-			let categoriesLength: ICategory[] = [
-				{ count: 0, events: [] },
-				{ count: 0, events: [] },
-				{ count: 0, events: [] },
-				{ count: 0, events: [] },
-				{ count: 0, events: [] }
-			];
-			Categories.forEach((loopcategory, y) => {
-				month.events.forEach((monthEvent: any) => {
-					// finalInfo[y].events.push({ event: monthEvent, month: month.name[0] });
-					// console.log(monthEvent.Category, loopcategory.title);
+		let finalInfo: ICategory[] = this.state.Categories;
+		console.log(finalInfo)
+		months.forEach((month) =>{
+			month.events.forEach((happening :any) =>{
+				finalInfo.forEach((category, i) =>{
+					if(happening.Category === category.category){
+						let tempEvent: IEvent= { eventName: happening.title, month: month.name[0]}
+						category.events.push(tempEvent);
+					}
+				})
+				// console.log(finalInfo);
+				finalInfo.forEach((category) =>{
+					let highest = highestOccurance(category.events);
+					category.maxCount = highest;
+				})
+			})
+		})
+		// this.state.months.forEach((month, i) => {
+		// 	let categoriesLength: ICategory[] = [
+		// 		{ count: 0, events: [] },
+		// 		{ count: 0, events: [] },
+		// 		{ count: 0, events: [] },
+		// 		{ count: 0, events: [] },
+		// 		{ count: 0, events: [] }
+		// 	];
+		// 	Categories.forEach((loopcategory, y) => {
+		// 		month.events.forEach((monthEvent: any) => {
+		// 			// finalInfo[y].events.push({ event: monthEvent, month: month.name[0] });
+		// 			// console.log(monthEvent.Category, loopcategory.title);
 
-					if (monthEvent.Category !== loopcategory.title) {
-						categoriesLength[y].count++;
-					}
-					console.log(Categories[y].title, ' = ', loopcategory.title);
-					if (Categories[y].title === loopcategory.title) {
-						finalInfo[y].events.push({ event: monthEvent, month: month.name[0] });
-					}
-				});
-				if (categoriesLength[y].count > finalInfo[y].count) {
-					finalInfo[y].count = categoriesLength[y].count;
-				}
-				// if (monthEvent) {
-				// 	// hvis kategori pushe hær
-				// }
-			});
-		});
-		Categories.forEach((length, i) => {
-			maxLengthArray.push({ Category: Categories[i].title, info: finalInfo[i] });
-		});
-		maxLengthArray.sort((a, b) => {
-			return a.info.count > b.info.count ? 1 : b.info.count > a.info.count ? -1 : 0;
-		});
-		this.setState({
-			Categories: maxLengthArray
-		});
+					// if (monthEvent.Category !== loopcategory.title) {
+					// 	categoriesLength[y].count++;
+					// }
+		// 			console.log(Categories[y].title, ' = ', loopcategory.title);
+		// 			if (Categories[y].title === loopcategory.title) {
+		// 				categoriesLength[y].events.push({ event: monthEvent, month: month.name[0] });
+		// 			}
+		// 		});
+		// 		if (categoriesLength[y].count > finalInfo[y].count) {
+		// 			finalInfo[y] = categoriesLength[y];
+		// 		}
+		// 		// if (monthEvent) {
+		// 		// 	// hvis kategori pushe hær
+		// 		// }
+		// 	});
+		// });
+		// Categories.forEach((length, i) => {
+		// 	maxLengthArray.push({ Category: Categories[i].title, info: finalInfo[i] });
+		// });
+		// maxLengthArray.sort((a, b) => {
+		// 	return a.info.count > b.info.count ? 1 : b.info.count > a.info.count ? -1 : 0;
+		// });
+		// this.setState({
+		// 	Categories: maxLengthArray
+		// });
 	};
 
 	//Lifecyclemethods
@@ -130,17 +154,17 @@ export default class Arshjul extends Component<IArshjulProps, IArshjulState> {
 	};
 	render() {
 		const { months, svgHeight, svgWidth, showShortHand, Categories } = this.state;
-		let totRadius =
-			svgWidth / 18 + svgHeight / 18 + (svgWidth / 15.5 + svgHeight / 15.5 + this.state.Categories.length * 30);
+		let totRadius = 0 ;
+			// svgWidth / 18 + svgHeight / 18 + (svgWidth / 15.5 + svgHeight / 15.5 + this.state.Categories.length * 30);
 
 		let tabsLength = 0;
 		for (let i = 0; i < this.state.Categories.length; i++) {
-			tabsLength += svgWidth / 15.5 + svgHeight / 15.5 + this.state.Categories[i].lengde * 30;
-			// console.log(tabsLength);
+			totRadius += svgWidth / 15.5 + svgHeight / 15.5 + this.state.Categories[i].maxCount  * 30;
+			console.log(tabsLength);
 		}
-		// console.log(tabsLength);
+		console.log(tabsLength);
 		// totRadius += tabsLength;
-		// console.log(totRadius);
+		console.log(totRadius);
 
 		return (
 			<div>
@@ -158,8 +182,18 @@ export default class Arshjul extends Component<IArshjulProps, IArshjulState> {
 						// />
 					)} */}
 					{
-						// Categories.map((Category, i) =>{
-						// })
+						Categories.map((category, i) =>{
+							
+							return (<g key={category.category}>
+									<CategoryCircle category={category} 
+										svgHeight={svgHeight}
+										svgWidth={svgWidth}
+										totRadius={totRadius}
+										order={i}
+										eventsLength={category.maxCount}
+										/>
+							</g>)
+						})
 					}
 					{months.map((month: any) => {
 						return (
@@ -169,13 +203,13 @@ export default class Arshjul extends Component<IArshjulProps, IArshjulState> {
 									month.events.map((event: any, i: number) => {
 										return (
 											<g key={i}>
-												<CategoryCircle
+												{/* <CategoryCircle
 													svgHeight={svgHeight}
 													svgWidth={svgWidth}
 													totRadius={totRadius}
 													eventsLength={month.events.length}
 													order={i}
-												/>
+												/> */}
 												<Tabs
 													month={month}
 													svgHeight={svgHeight}

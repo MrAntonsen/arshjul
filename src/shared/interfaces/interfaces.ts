@@ -2,7 +2,12 @@ export interface CartesianCoordinate {
 	x: number;
 	y: number;
 }
+export interface IEvent {
+	eventName: string;
+	month: string;
+}
 export interface ICategory {
-	count: number;
-	events: any[];
+	category: string;
+	maxCount: number;
+	events: IEvent[];
 }

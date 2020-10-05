@@ -44,7 +44,27 @@ export const describeArc = (x: number, y: number, radius: number, startAngle: nu
 
 	return d;
 };
-
+//Get highest occurance
+export const highestOccurance = (eventarray: any[]) =>{
+	let mf = 0;
+let m = 0;
+let item;
+for (let i=0; i<eventarray.length; i++)
+{
+        for (let j=i; j<eventarray.length; j++)
+        {
+                if (eventarray[i].month == eventarray[j].month)
+                 m++;
+                if (mf<m)
+                {
+                  mf=m; 
+                  item = eventarray[i].month;
+                }
+        }
+        m=0;
+}
+return mf;
+}
 //--------------GENERER RANDOM EVENTS ----------------------//
 function idealTextColor(bgColor: any) {
 	var nThreshold = 105;
